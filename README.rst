@@ -4,9 +4,9 @@ flatpy
 
 .. badges
 
-.. .. image:: https://img.shields.io/pypi/v/flatpy.svg
-..         :target: https://pypi.python.org/pypi/flatpy
-..         :alt: PyPi
+.. image:: https://img.shields.io/pypi/v/flatpy.svg
+        :target: https://pypi.python.org/pypi/flatpy
+        :alt: PyPi
 .. .. image:: https://travis-ci.org/maljovec/flatpy.svg?branch=master
 ..         :target: https://travis-ci.org/maljovec/flatpy
 ..         :alt: Travis-CI
@@ -39,7 +39,7 @@ various other test cases.
 
 .. LONG_DESCRIPTION
 
-TODO
+Working on several different applications with scalar field topology, active learning, and optimization, I have found myself programming and reprogramming a core set of often cited test functions. In addition, I have found the need to modify or tweak some of these functions while also generating completely novel functions that exhibit some specified behavior. This work is an attempt to consolidate those functions and offer them in a reusable fashion in a simple python library with some nice recipes/utilities such as generating a test 2D grid of data, adding noise to the functions, etc.
 
 .. END_LONG_DESCRIPTION
 
@@ -67,23 +67,37 @@ Otherwise, you can download the repository for the most cutting edge additions::
 Usage
 =====
 
-TODO
+::
+    import flatpy
+    import matplotlib.pyplot as plt
+    
+    X = flatpy.utils.generate_test_grid_2d(40)
+    x, y = flatpy.utils.unpack2D(X)
+    z = flatpy.nD.schwefel(X)
+    plt.figure()
+    img = plt.tricontourf(x, y, z, cmap="cividis")
+    plt.colorbar(img)
+    plt.show()
+
+.. image:: images/schwefel.png
+    :align: center
+    :alt: flatpy
 
 .. end-usage
 
 
 .. testing
 
-Testing
-=====
+.. Testing
+.. =====
 
-TODO
+.. TODO
 
 .. end-example
 
 .. todo
 
-What's Next
-======
+.. What's Next
+.. ======
 
 .. end-todo
