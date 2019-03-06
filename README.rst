@@ -68,6 +68,7 @@ Usage
 =====
 
 ::
+
     import flatpy
     import matplotlib.pyplot as plt
     
@@ -78,6 +79,7 @@ Usage
     img = plt.tricontourf(x, y, z, cmap="cividis")
     plt.colorbar(img)
     plt.show()
+
 
 .. image:: images/schwefel.png
     :align: center
