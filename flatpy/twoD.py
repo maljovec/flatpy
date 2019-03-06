@@ -185,13 +185,3 @@ def strangulation(_x):
     #         (1.) * np.exp(-(np.power(x-0.45, 2) + np.power(y-0.65, 2))/0.01) +
     #         (2.) * np.exp(-(np.power(x-0.48, 2) + np.power(y-0.52, 2))/0.001) +
     #         1e-2*y)
-
-
-def test(_x):
-    x, y = unpack2D(_x)
-    x = 0.25*x
-    y = 0.25*y
-    return (1./2.) * (np.exp(-((x-.25)**2)/0.09) +
-                      np.exp(-((y-.25)**2)/0.09) +
-                      np.exp(-((x-.75)**2)/0.01) +
-                      np.exp(-((y-.75)**2)/0.01))
