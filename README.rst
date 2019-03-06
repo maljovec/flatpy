@@ -32,8 +32,8 @@ flatpy
 
 .. introduction
 
-Function Library for Analysis and Testing in Python - A Collection of
-Scalar Functions (Most of which generalize to arbitrary dimensions)
+Function Library for Analysis and Testing in Python - A collection of
+scalar functions (many of which generalize to arbitrary dimensions)
 typically used in global optimization problems, but also suitable for
 various other test cases.
 
