@@ -18,8 +18,10 @@ def unpack2D(_x):
     y = _x[:, 1]
     return x, y
 
+
 def gaussian_2d(x, mu=0.75, sigma=0.25):
     return np.exp(-sum((x-mu)**2/(2*sigma**2)))
+
 
 def add_nonuniform_noise(field, noise_level):
     epsilon = np.random.uniform(-noise_level, noise_level, field.shape)
@@ -31,6 +33,15 @@ def add_nonuniform_noise(field, noise_level):
             amplitude[row, col] = gaussian_2d(np.array([x, y]))
     return field + amplitude*epsilon
 
+
 def add_uniform_noise(field, noise_level):
     epsilon = np.random.uniform(-noise_level, noise_level, field.shape)
+    return field + epsilon
+
+
+def add_nonparametric_uniform_noise(field, noise_level, outlier_percent, outlier_distance):
+    epsilon = np.random.uniform(-noise_level, noise_level, field.shape)
+    outlier_mask = np.random.choice(a=[False, True], size=field.shape, p=[
+                                    outlier_percent, 1-outlier_percent])
+    epsilon[outlier_mask] += outlier_distance
     return field + epsilon
