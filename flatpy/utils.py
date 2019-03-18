@@ -8,7 +8,7 @@ def generate_test_grid_2d(resolution=40):
     return np.vstack([x.ravel(), y.ravel()]).T
 
 
-def unpack2D(_x):
+def unpack_2d(_x):
     """
         Helper function for splitting 2D data into x and y component to make
         equations simpler
@@ -41,7 +41,13 @@ def add_uniform_noise(field, noise_level):
 
 def add_nonparametric_uniform_noise(field, noise_level, outlier_percent, outlier_distance):
     epsilon = np.random.uniform(-noise_level, noise_level, field.shape)
-    outlier_mask = np.random.choice(a=[False, True], size=field.shape, p=[
+    outlier_mask = np.random.choice(a=[True, False], size=field.shape, p=[
                                     outlier_percent, 1-outlier_percent])
     epsilon[outlier_mask] += outlier_distance
     return field + epsilon
+
+def add_simulated_simplicity(field, epsilon=1e-6):
+    # TODO: this is not right
+    for d in range(len(field.shape)):
+        field += epsilon*np.linspace(0, 1, field.shape[d])
+    return field

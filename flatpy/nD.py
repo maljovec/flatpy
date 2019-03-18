@@ -3,6 +3,7 @@ import copy
 import math
 import scipy.optimize
 
+
 def ackley(x, a=20, b=0.2, c=2*math.pi):
     x = 2*np.atleast_2d(x)-1
     d = x.shape[1]
@@ -20,12 +21,13 @@ def ackley(x, a=20, b=0.2, c=2*math.pi):
     y = term1 + term2 + a + np.exp(1)
     return y
 
+
 def decay(x):
     x = np.atleast_2d(x)
     d = x.shape[1]
     eps = 0
     for i in range(d):
-        eps += x[:,i]*1e-6
+        eps += x[:, i]*1e-6
 
     dist = np.zeros(x.shape[0])
     for i in range(d):
@@ -36,6 +38,7 @@ def decay(x):
     ans[indices] = 0.1 + (1-dist[indices]**3)**3 + eps[indices]
     return ans
 
+
 def checkerBoard(x):
     x = np.atleast_2d(x)
     d = x.shape[1]
@@ -45,6 +48,7 @@ def checkerBoard(x):
         sgn = np.cos(x[:, i]*math.pi)/abs(np.cos(x[:, i]*math.pi))
         periodicTerm *= sgn*abs(np.cos(x[:, i]*math.pi))**(1/7.)
     return periodicTerm
+
 
 def flatTop(x):
     return checkerBoard(x)*decay(x)
@@ -75,6 +79,7 @@ def schwefel(x):
     for i in range(d):
         retValue -= x[:, i]*np.sin(np.sqrt(abs(x[:, i])))
     return retValue
+
 
 def shekel(x):
     x = 10*np.atleast_2d(x)
@@ -109,3 +114,9 @@ def shekel(x):
             subSummand += (x[:, j]-a[i, j])**2
         summand += (subSummand)**-1
     return summand
+
+
+available_functions = {"ackley": ackley, "checkerBoard": checkerBoard,
+                       "flatTop": flatTop, "rosenbrock": rosenbrock,
+                       "salomon": salomon, "schwefel": schwefel,
+                       "shekel": shekel}
