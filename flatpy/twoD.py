@@ -1,4 +1,4 @@
-from flatpy.utils import unpack2D
+from flatpy.utils import unpack_2d
 import numpy as np
 import scipy
 import scipy.special
@@ -6,7 +6,7 @@ import math
 
 
 def gerber(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     return ((2./4.) * np.exp(-((x-.25)**2)/0.09) +
             (3./4.) * np.exp(-((y-.25)**2)/0.09) +
             (3./4.) * np.exp(-((x-.75)**2)/0.01) +
@@ -15,7 +15,7 @@ def gerber(_x):
 
 def gerber_rotated(_x):
     theta = math.pi/6.
-    u, v = unpack2D(_x)
+    u, v = unpack_2d(_x)
     u = u + 0.0
     v = v - 0.4
     x = u*math.cos(theta) - v*math.sin(theta)
@@ -25,22 +25,6 @@ def gerber_rotated(_x):
             (3./4.) * np.exp(-((x-.75)**2)/0.01) +
             (4./4.) * np.exp(-((y-.75)**2)/0.01))
 
-
-# def local_bumps(x, y, amplitude=1./4., cx=0.5, cy=0.5):
-#     nx_off = cx - 0.1
-#     px_off = cx + 0.1
-#     ny_off = cy - 0.1
-#     py_off = cy + 0.1
-
-#     return (amplitude * np.exp(-((x - nx_off)**2+(y - ny_off)**2)/0.001) +
-#             amplitude * np.exp(-((x - nx_off)**2+(y - cy)**2)/0.001) +
-#             amplitude * np.exp(-((x - cx)**2+(y - ny_off)**2)/0.001) -
-#             amplitude * np.exp(-((x - cx)**2+(y - cy)**2)/0.001) +
-#             amplitude * np.exp(-((x - px_off)**2+(y - py_off)**2)/0.001) +
-#             amplitude * np.exp(-((x - px_off)**2+(y - cy)**2)/0.001) +
-#             amplitude * np.exp(-((x - cx)**2+(y - py_off)**2)/0.001) +
-#             amplitude * np.exp(-((x - px_off)**2+(y - ny_off)**2)/0.001) +
-#             amplitude * np.exp(-((x - nx_off)**2+(y - py_off)**2)/0.001))
 
 def local_bumps(x, y, amplitude=1./4., cx=0.5, cy=0.5):
     nx_off = cx - 0.1
@@ -53,22 +37,23 @@ def local_bumps(x, y, amplitude=1./4., cx=0.5, cy=0.5):
             amplitude * np.exp(-((x - px_off)**2+(y - ny_off)**2)/0.001) +
             amplitude * np.exp(-((x - nx_off)**2+(y - py_off)**2)/0.001))
 
+
 def gerber_bumpy(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     return (gerber(_x) +
             (1/4.) * np.exp(-((x-0.25)**2+(y-0.25)**2)/0.09) +
             local_bumps(x, y, amplitude=1./8., cx=0.25, cy=0.25))
 
 
 def gerber_smeared(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     return ((1./2.) * np.exp(-((x-.25)**2)/0.09) +
             (3./4.) * np.exp(-((x-.75)**2)/0.01) +
             (1./1.) * np.exp(-((y-.75)**2)/0.01))
 
 
-def goldsteinPrice(_x):
-    x, y = unpack2D(_x)
+def goldstein_price(_x):
+    x, y = unpack_2d(_x)
     xa = 4 * x - 2
     ya = 4 * y - 2
 
@@ -79,12 +64,12 @@ def goldsteinPrice(_x):
 
 
 def hill(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     return np.exp(- ((x - .55)**2 + (y-.75)**2)/.125) + 0.01*(x+y)
 
 
 def hill_sided(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     center_x = 0.5
     center_y = 0.5
     sigma_1 = 1.25
@@ -109,7 +94,7 @@ def hill_sided(_x):
 
 
 def himmelblau(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     x = 12*x-6
     y = 12*y-6
 
@@ -117,7 +102,7 @@ def himmelblau(_x):
 
 
 def hinge(_x):
-    x, _ = unpack2D(_x)
+    x, _ = unpack_2d(_x)
     # x = math.pi/4.*(x)
     # y = math.pi/4.*(y)
     # return np.cos(2*x) - np.cos(y)
@@ -125,12 +110,12 @@ def hinge(_x):
 
 
 def ranjan(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     return x + y + x*y
 
 
 def ridge(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     theta = math.pi/3.
     sigx = .05
     sigy = .04
@@ -145,8 +130,8 @@ def ridge(_x):
                                     c*(y-.25)**2)))
 
 
-def ridge2(_x):
-    x, y = unpack2D(_x)
+def ridge_rounded(_x):
+    x, y = unpack_2d(_x)
     theta = math.pi/3.
     sigx = .05
     sigy = .04
@@ -160,28 +145,26 @@ def ridge2(_x):
                            np.exp(-(a*(x-.3)**2 + 2*b*(x-.3)*(y-.25) +
                                     c*(y-.25)**2)))
 
+
 def strangulation(_x):
-    x, y = unpack2D(_x)
+    x, y = unpack_2d(_x)
     return (0 -
             (0.2) * np.exp(-(np.power(x-0.25, 2) + np.power(y-0.25, 2))/0.001) -
             (0.2) * np.exp(-(np.power(x-0.25, 2) + np.power(y-0.75, 2))/0.001) -
             (0.2) * np.exp(-(np.power(x-0.75, 2) + np.power(y-0.25, 2))/0.001) -
             (0.2) * np.exp(-(np.power(x-0.75, 2) + np.power(y-0.75, 2))/0.001) +
             (1.0) * np.exp(-(np.power(x-0.50, 2) + np.power(y-0.50, 2))/0.125))
-    # return (0 +
-    #         (1.) * np.exp(-(np.power(x-0.20, 2) + np.power(y-0.20, 2))/0.005) +
-    #         (1.) * np.exp(-(np.power(x-0.80, 2) + np.power(y-0.20, 2))/0.005) -
-    #         (1.) * np.exp(-(np.power(x-0.50, 2) + np.power(y-0.25, 2))/0.05) -
-    #         (1.) * np.exp(-(np.power(x-0.00, 2) + np.power(y-0.00, 2))/0.01) -
-    #         (1.) * np.exp(-(np.power(x-1.00, 2) + np.power(y-0.00, 2))/0.01) -
-    #         (1.) * np.exp(-(np.power(x-0.00, 2) + np.power(y-1.00, 2))/0.01) -
-    #         (1.) * np.exp(-(np.power(x-1.00, 2) + np.power(y-1.00, 2))/0.01) +
-    #         (1.) * np.exp(-(np.power(x-0.20, 2) + np.power(y-0.80, 2))/0.01) +
-    #         (1.) * np.exp(-(np.power(x-0.80, 2) + np.power(y-0.80, 2))/0.01) +
-    #         (1.) * np.exp(-(np.power(x-0.50, 2) + np.power(y-0.10, 2))/0.01) +
-    #         (1.) * np.exp(-(np.power(x-0.00, 2) + np.power(y-0.50, 2))/0.01) +
-    #         (1.) * np.exp(-(np.power(x-1.00, 2) + np.power(y-0.50, 2))/0.005) +
-    #         (1.) * np.exp(-(np.power(x-0.50, 2) + np.power(y-0.90, 2))/0.01) +
-    #         (1.) * np.exp(-(np.power(x-0.45, 2) + np.power(y-0.65, 2))/0.01) +
-    #         (2.) * np.exp(-(np.power(x-0.48, 2) + np.power(y-0.52, 2))/0.001) +
-    #         1e-2*y)
+
+
+available_functions = {"gerber": gerber,
+                       "gerber_rotated": gerber_rotated,
+                       "gerber_bumpy": gerber_bumpy,
+                       "gerber_smeared": gerber_smeared,
+                       "goldstein_price": goldstein_price,
+                       "hill": hill,
+                       "hill_sided": hill_sided,
+                       "himmelblau": himmelblau,
+                       "hinge": hinge,
+                       "ridge": ridge,
+                       "ridge_rounded": ridge_rounded,
+                       "strangulation": strangulation}
