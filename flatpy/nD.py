@@ -39,6 +39,22 @@ def decay(x):
     return ans
 
 
+def diagonal(x, max_count=4):
+    x = np.atleast_2d(x)
+    d = x.shape[1]
+
+    summand = 0
+    sum_squared = 0
+
+    for i in range(d):
+        summand += x[:, i]
+        sum_sqr += x[:, i]**2
+
+    diag_dist = np.exp(((sum_squared) - summand**2/d)*np.log(0.001)/np.sqrt(d))
+    func = 0.5*np.sin(0.5*math.pi + math.pi*((max_count+1) % 2) + math.pi*0.5*(2*max_count)*(summand) / dimension)
+
+    return diag_dist*func
+
 def checkerBoard(x):
     x = np.atleast_2d(x)
     d = x.shape[1]
@@ -117,6 +133,6 @@ def shekel(x):
 
 
 available_functions = {"ackley": ackley, "checkerBoard": checkerBoard,
-                       "flatTop": flatTop, "rosenbrock": rosenbrock,
-                       "salomon": salomon, "schwefel": schwefel,
-                       "shekel": shekel}
+                       "diagonal": diagonal, "flatTop": flatTop,
+                       "rosenbrock": rosenbrock, "salomon": salomon,
+                       "schwefel": schwefel, "shekel": shekel}
