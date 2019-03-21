@@ -39,7 +39,7 @@ def decay(x):
     return ans
 
 
-def diagonal(x, max_count=4):
+def diagonal(x, max_count=3):
     x = np.atleast_2d(x)
     d = x.shape[1]
 
@@ -48,10 +48,10 @@ def diagonal(x, max_count=4):
 
     for i in range(d):
         summand += x[:, i]
-        sum_sqr += x[:, i]**2
+        sum_squared += x[:, i]**2
 
     diag_dist = np.exp(((sum_squared) - summand**2/d)*np.log(0.001)/np.sqrt(d))
-    func = 0.5*np.sin(0.5*math.pi + math.pi*((max_count+1) % 2) + math.pi*0.5*(2*max_count)*(summand) / dimension)
+    func = 0.5*np.sin(0.5*math.pi + math.pi*((2*max_count+1) % 2) + math.pi*0.5*(4*max_count)*(summand) / d)
 
     return diag_dist*func
 
