@@ -1,6 +1,7 @@
-import numpy as np
 import math
-import scipy.optimize
+
+import numpy as np
+import scipy.optimize  # type: ignore
 
 
 def ackley(x, a=20, b=0.2, c=2 * math.pi):
@@ -30,11 +31,11 @@ def decay(x):
 
     dist = np.zeros(x.shape[0])
     for i in range(d):
-        dist += x[:, i]**2
+        dist += x[:, i] ** 2
     dist = np.sqrt(dist)
-    ans = (0.1 + eps)
+    ans = 0.1 + eps
     indices = np.where(dist <= 1)
-    ans[indices] = 0.1 + (1 - dist[indices]**3)**3 + eps[indices]
+    ans[indices] = 0.1 + (1 - dist[indices] ** 3) ** 3 + eps[indices]
     return ans
 
 
@@ -47,13 +48,14 @@ def diagonal(x, max_count=3):
 
     for i in range(d):
         summand += x[:, i]
-        sum_squared += x[:, i]**2
+        sum_squared += x[:, i] ** 2
 
-    diag_dist = np.exp(
-        ((sum_squared) - summand**2 / d) * np.log(0.001) / np.sqrt(d))
-    func = 0.5 * np.sin(0.5 * math.pi + math.pi *
-                        ((2 * max_count + 1) % 2) + math.pi * 0.5 *
-                        (4 * max_count) * (summand) / d)
+    diag_dist = np.exp(((sum_squared) - summand**2 / d) * np.log(0.001) / np.sqrt(d))
+    func = 0.5 * np.sin(
+        0.5 * math.pi
+        + math.pi * ((2 * max_count + 1) % 2)
+        + math.pi * 0.5 * (4 * max_count) * (summand) / d
+    )
 
     return diag_dist * func
 
@@ -65,7 +67,7 @@ def checkerBoard(x):
     periodicTerm = 1
     for i in range(d):
         sgn = np.cos(x[:, i] * math.pi) / abs(np.cos(x[:, i] * math.pi))
-        periodicTerm *= sgn * abs(np.cos(x[:, i] * math.pi))**(1 / 7.)
+        periodicTerm *= sgn * abs(np.cos(x[:, i] * math.pi)) ** (1 / 7.0)
     return periodicTerm
 
 
@@ -84,7 +86,7 @@ def salomon(x):
 
     summand = 0
     for i in range(d):
-        summand += x[:, i]**2
+        summand += x[:, i] ** 2
     summand = np.sqrt(summand)
     return 1 - np.cos(2 * math.pi * summand) + 0.1 * summand
 
@@ -129,8 +131,8 @@ def shekel(x):
     for i in range(m):
         subSummand = c[i]
         for j in range(d):
-            subSummand += (x[:, j] - a[i, j])**2
-        summand += (subSummand)**-1
+            subSummand += (x[:, j] - a[i, j]) ** 2
+        summand += (subSummand) ** -1
     return summand
 
 
@@ -142,5 +144,5 @@ available_functions = {
     "rosenbrock": rosenbrock,
     "salomon": salomon,
     "schwefel": schwefel,
-    "shekel": shekel
+    "shekel": shekel,
 }

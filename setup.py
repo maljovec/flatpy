@@ -1,20 +1,19 @@
 """
       Setup script for flatpy
 """
-from setuptools import setup
 import re
 
-extra_args = {}
+from setuptools import setup
 
 
 def get_property(prop, project):
     """
-        Helper function for retrieving properties from a project's
-        __init__.py file
-        @In, prop, string representing the property to be retrieved
-        @In, project, string representing the project from which we will
-        retrieve the property
-        @Out, string, the value of the found property
+    Helper function for retrieving properties from a project's
+    __init__.py file
+    @In, prop, string representing the property to be retrieved
+    @In, project, string representing the project from which we will
+    retrieve the property
+    @Out, string, the value of the found property
     """
     result = re.search(
         r'{}\s*=\s*[\'"]([^\'"]*)[\'"]'.format(prop),
@@ -27,8 +26,8 @@ VERSION = get_property("__version__", "flatpy")
 
 
 def long_description():
-    """ Reads the README.rst file and extracts the portion tagged between
-        specific LONG_DESCRIPTION comment lines.
+    """Reads the README.rst file and extracts the portion tagged between
+    specific LONG_DESCRIPTION comment lines.
     """
     description = ""
     recording = False
@@ -45,6 +44,7 @@ def long_description():
 
 
 # Consult here: https://packaging.python.org/tutorials/distributing-packages/
+url = "https://github.com/maljovec/flatpy"
 setup(
     name="flatpy",
     packages=["flatpy"],
@@ -55,9 +55,8 @@ setup(
     author_email="maljovec002@gmail.com",
     license="BSD",
     test_suite="flatpy.tests",
-    url="https://github.com/maljovec/flatpy",
-    download_url="https://github.com/maljovec/flatpy/archive/" + VERSION +
-    ".tar.gz",
+    url=url,
+    download_url=f"{url}/archive/{VERSION}.tar.gz",
     keywords=[""],
     # Consult here: https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[

@@ -2,16 +2,15 @@ import numpy as np
 
 
 def generate_test_grid_2d(resolution=40):
-    """
-    """
-    x, y = np.mgrid[0:1:(resolution * 1j), 0:1:(resolution * 1j)]
+    """ """
+    x, y = np.mgrid[0 : 1 : (resolution * 1j), 0 : 1 : (resolution * 1j)]
     return np.vstack([x.ravel(), y.ravel()]).T
 
 
 def unpack_2d(_x):
     """
-        Helper function for splitting 2D data into x and y component to make
-        equations simpler
+    Helper function for splitting 2D data into x and y component to make
+    equations simpler
     """
     _x = np.atleast_2d(_x)
     x = _x[:, 0]
@@ -20,7 +19,7 @@ def unpack_2d(_x):
 
 
 def gaussian_2d(x, mu=0.75, sigma=0.25):
-    return np.exp(-sum((x - mu)**2 / (2 * sigma**2)))
+    return np.exp(-sum((x - mu) ** 2 / (2 * sigma**2)))
 
 
 def add_nonuniform_noise(field, noise_level):
@@ -39,12 +38,15 @@ def add_uniform_noise(field, noise_level):
     return field + epsilon
 
 
-def add_nonparametric_uniform_noise(field, noise_level, outlier_percent,
-                                    outlier_distance):
+def add_nonparametric_uniform_noise(
+    field, noise_level, outlier_percent, outlier_distance
+):
     epsilon = np.random.uniform(-noise_level, noise_level, field.shape)
-    outlier_mask = np.random.choice(a=[True, False],
-                                    size=field.shape,
-                                    p=[outlier_percent, 1 - outlier_percent])
+    outlier_mask = np.random.choice(
+        a=[True, False],
+        size=field.shape,
+        p=[outlier_percent, 1 - outlier_percent],
+    )
     epsilon[outlier_mask] += outlier_distance
     return field + epsilon
 
