@@ -20,4 +20,4 @@ jobs:
           pip install -U setuptools
           python -m pip install -U pip
       - run: pip install tox
-      - run: tox -e 3${{ matrix.minor_version }}
+      - run: tox -e py3${{ matrix.minor_version }}
