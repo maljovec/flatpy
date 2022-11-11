@@ -4,7 +4,6 @@
 from setuptools import setup
 import re
 
-
 extra_args = {}
 
 
@@ -57,9 +56,8 @@ setup(
     license="BSD",
     test_suite="flatpy.tests",
     url="https://github.com/maljovec/flatpy",
-    download_url="https://github.com/maljovec/flatpy/archive/"
-    + VERSION
-    + ".tar.gz",
+    download_url="https://github.com/maljovec/flatpy/archive/" + VERSION +
+    ".tar.gz",
     keywords=[""],
     # Consult here: https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -67,11 +65,10 @@ setup(
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: BSD License",
         "Programming Language :: C++",
-        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 3",
         "Topic :: Scientific/Engineering :: Mathematics",
     ],
     setup_requires=["scipy", "numpy"],
     install_requires=["scipy", "numpy"],
-    python_requires=">=2.7, <4",
+    python_requires=">=3.7, <4",
 )
