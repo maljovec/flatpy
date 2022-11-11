@@ -71,7 +71,7 @@ Usage
 
     import flatpy
     import matplotlib.pyplot as plt
-    
+
     X = flatpy.utils.generate_test_grid_2d(40)
     x, y = flatpy.utils.unpack2D(X)
     z = flatpy.nD.schwefel(X)
