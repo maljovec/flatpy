@@ -20,7 +20,7 @@ def unpack_2d(_x):
 
 
 def gaussian_2d(x, mu=0.75, sigma=0.25):
-    return np.exp(-sum((x-mu)**2/(2*sigma**2)))
+    return np.exp(-sum((x - mu)**2 / (2 * sigma**2)))
 
 
 def add_nonuniform_noise(field, noise_level):
@@ -31,7 +31,7 @@ def add_nonuniform_noise(field, noise_level):
         for col in range(amplitude.shape[1]):
             x = col / amplitude.shape[1]
             amplitude[row, col] = gaussian_2d(np.array([x, y]))
-    return field + amplitude*epsilon
+    return field + amplitude * epsilon
 
 
 def add_uniform_noise(field, noise_level):
@@ -39,15 +39,18 @@ def add_uniform_noise(field, noise_level):
     return field + epsilon
 
 
-def add_nonparametric_uniform_noise(field, noise_level, outlier_percent, outlier_distance):
+def add_nonparametric_uniform_noise(field, noise_level, outlier_percent,
+                                    outlier_distance):
     epsilon = np.random.uniform(-noise_level, noise_level, field.shape)
-    outlier_mask = np.random.choice(a=[True, False], size=field.shape, p=[
-                                    outlier_percent, 1-outlier_percent])
+    outlier_mask = np.random.choice(a=[True, False],
+                                    size=field.shape,
+                                    p=[outlier_percent, 1 - outlier_percent])
     epsilon[outlier_mask] += outlier_distance
     return field + epsilon
+
 
 def add_simulated_simplicity(field, epsilon=1e-6):
     # TODO: this is not right
     for d in range(len(field.shape)):
-        field += epsilon*np.linspace(0, 1, field.shape[d])
+        field += epsilon * np.linspace(0, 1, field.shape[d])
     return field

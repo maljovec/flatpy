@@ -1,8 +1,6 @@
 import flatpy.twoD
 import flatpy.nD
-import flatpy.utils
+import flatpy.utils  # noqa: F401
 
-__all__ = ['2D',
-           'nD',
-           'utils']
-__version__ = '0.0.1'
+__all__ = ['twoD', 'nD', 'utils']
+__version__ = '0.0.2'
