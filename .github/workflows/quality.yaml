@@ -1,8 +1,8 @@
-name: Code Quality
+name: Quality
 on: [push]
 jobs:
   tests:
-    name: Code Quality
+    name: Quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
