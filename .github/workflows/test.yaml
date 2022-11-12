@@ -34,7 +34,6 @@ jobs:
         with:
           path: .
       - run: pip install coverage
-      - run: ls -la .coverage*
       - run: |
           coverage combine coverage*/
           coverage report --fail-under=0
