@@ -23,3 +23,14 @@ strict_optional = false
 implicit_reexport = true
 allow_redefinition = true
 files = "flatpy"
+
+[tool.pytest.ini_options]
+addopts = [
+	"--ignore", "setup.py",
+	"--tb", "native",
+	"--strict-markers",
+	"--durations=20",
+	"--cov-report", "term-missing",
+	"--cov=flatpy",
+]
+testpaths = ["tests"]
