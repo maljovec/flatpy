@@ -23,7 +23,7 @@ jobs:
       - run: tox -e py3${{ matrix.minor_version }}
       - uses: actions/upload-artifact@v3
         with:
-          name: .coverage.${{ matrix.os }}.py3${{ matrix.minor_version }}
+          name: coverage.${{ matrix.os }}.py3${{ matrix.minor_version }}
           path: ./.coverage.py3${{ matrix.minor_version }}
   coverage:
     needs: tests
@@ -36,5 +36,5 @@ jobs:
       - run: pip install coverage
       - run: ls -la .coverage*
       - run: |
-          coverage combine
+          coverage combine coverage*/
           coverage report --fail-under=0
