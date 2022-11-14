@@ -1,6 +1,32 @@
 [build-system]
-requires = ["setuptools", "setuptools-scm", "wheel"]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel"]
 build-backend = "setuptools.build_meta"
+
+dependencies = [
+    "scipy",
+    "numpy",
+]
+
+[project]
+name = "flatpy"
+authors = [
+    {name = "Dan Maljovec", email = "maljovec002@gmail.com"},
+]
+readme = "README.rst"
+classifiers = [
+	"Development Status :: 3 - Alpha",
+	"Intended Audience :: Science/Research",
+	"License :: OSI Approved :: BSD License",
+	"Programming Language :: C++",
+	"Programming Language :: Python :: 3",
+	"Topic :: Scientific/Engineering :: Mathematics",
+]
+requires-python = ">=3.7"
+dynamic = ["version", "description"]
+
+[project.urls]
+Documentation = "https://flatpy.readthedocs.io/en/latest/"
+Source = "https://github.com/maljovec/flatpy"
 
 [tool.bandit]
 skips = ["B101"]
@@ -37,3 +63,6 @@ addopts = [
 	"--cov=flatpy",
 ]
 testpaths = ["tests"]
+
+[tool.setuptools_scm]
+write_to = "flatpy/_version.py"
