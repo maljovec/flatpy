@@ -3,4 +3,4 @@ import flatpy.twoD
 import flatpy.utils  # noqa: F401
 
 __all__ = ["twoD", "nD", "utils"]
-__version__ = "0.0.2"
+__version__ = "0.0.3"
