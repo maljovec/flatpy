@@ -7,12 +7,13 @@ flatpy
 .. image:: https://img.shields.io/pypi/v/flatpy.svg
         :target: https://pypi.python.org/pypi/flatpy
         :alt: PyPi
-.. .. image:: https://travis-ci.org/maljovec/flatpy.svg?branch=master
-..         :target: https://travis-ci.org/maljovec/flatpy
-..         :alt: Travis-CI
-.. .. image:: https://coveralls.io/repos/github/maljovec/flatpy/badge.svg?branch=master
-..         :target: https://coveralls.io/github/maljovec/flatpy?branch=master
-..         :alt: Coveralls
+
+.. image:: https://github.com/github/docs/actions/workflows/test.yml/badge.svg?branch=main
+        :target: https://github.com/maljovec/flatpy/actions
+        :alt: Github Actions CI
+.. image:: https://coveralls.io/repos/github/maljovec/flatpy/badge.svg?branch=main
+        :target: https://coveralls.io/github/maljovec/flatpy?branch=main
+        :alt: Coveralls
 .. .. image:: https://readthedocs.org/projects/flatpy/badge/?version=latest
 ..         :target: https://flatpy.readthedocs.io/en/latest/?badge=latest
 ..         :alt: ReadTheDocs
