@@ -6,7 +6,10 @@ flatpy
 
 .. image:: https://img.shields.io/pypi/v/flatpy.svg
         :target: https://pypi.python.org/pypi/flatpy
-        :alt: PyPi
+        :alt: Latest Version on PyPI
+.. image:: https://img.shields.io/pypi/dm/flatpy.svg?label=PyPI%20downloads
+        :target: https://pypi.org/project/flatpy/
+        :alt: PyPI downloads
 
 .. image:: https://github.com/maljovec/flatpy/actions/workflows/quality.yaml/badge.svg?branch=main
         :target: https://github.com/maljovec/flatpy/actions
@@ -17,12 +20,23 @@ flatpy
 .. image:: https://coveralls.io/repos/github/maljovec/flatpy/badge.svg?branch=main
         :target: https://coveralls.io/github/maljovec/flatpy?branch=main
         :alt: Coveralls
+.. image:: https://www.codefactor.io/repository/github/maljovec/flatpy/badge
+        :target: https://www.codefactor.io/repository/github/maljovec/flatpy
+        :alt: CodeFactor
+
 .. .. image:: https://readthedocs.org/projects/flatpy/badge/?version=latest
 ..         :target: https://flatpy.readthedocs.io/en/latest/?badge=latest
 ..         :alt: ReadTheDocs
 .. .. image:: https://pyup.io/repos/github/maljovec/flatpy/shield.svg
 ..         :target: https://pyup.io/repos/github/maljovec/flatpy/
 ..         :alt: Pyup
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+        :target: https://github.com/psf/black
+        :alt: This code is formatted in black
+.. image:: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
+        :target: https://opensource.org/licenses/BSD-3-Clause
+        :alt: BSD 3-Clause License
 
 .. end_badges
 
