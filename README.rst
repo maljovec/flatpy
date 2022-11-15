@@ -8,7 +8,7 @@ flatpy
         :target: https://pypi.python.org/pypi/flatpy
         :alt: PyPi
 
-.. image:: https://github.com/github/docs/actions/workflows/test.yml/badge.svg?branch=main
+.. image::https://github.com/maljovec/flatpy/actions/workflows/test.yaml/badge.svg?branch=main
         :target: https://github.com/maljovec/flatpy/actions
         :alt: Github Actions CI
 .. image:: https://coveralls.io/repos/github/maljovec/flatpy/badge.svg?branch=main
