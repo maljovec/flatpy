@@ -35,7 +35,8 @@ jobs:
       - name: Build distributions
         run: |
           git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-          python setup.py sdist bdist_wheel
+          git tag
+          SETUPTOOLS_SCM_DEBUG=1 python setup.py sdist bdist_wheel
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
