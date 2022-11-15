@@ -65,4 +65,3 @@ addopts = [
 testpaths = ["tests"]
 
 [tool.setuptools_scm]
-write_to = "flatpy/_version.py"
