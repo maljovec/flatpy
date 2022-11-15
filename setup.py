@@ -29,7 +29,5 @@ setup(
     packages=["flatpy"],
     description="A library for computing samplings in arbitrary dimensions",
     long_description=long_description(),
-    license="BSD",
     test_suite="flatpy.tests",
-    keywords=[""],
 )
