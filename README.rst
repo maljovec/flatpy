@@ -8,9 +8,12 @@ flatpy
         :target: https://pypi.python.org/pypi/flatpy
         :alt: PyPi
 
+.. image:: https://github.com/maljovec/flatpy/actions/workflows/quality.yaml/badge.svg?branch=main
+        :target: https://github.com/maljovec/flatpy/actions
+        :alt: Code Quality Test Results
 .. image:: https://github.com/maljovec/flatpy/actions/workflows/test.yaml/badge.svg?branch=main
         :target: https://github.com/maljovec/flatpy/actions
-        :alt: Github Actions CI
+        :alt: Test Suite Results
 .. image:: https://coveralls.io/repos/github/maljovec/flatpy/badge.svg?branch=main
         :target: https://coveralls.io/github/maljovec/flatpy?branch=main
         :alt: Coveralls
